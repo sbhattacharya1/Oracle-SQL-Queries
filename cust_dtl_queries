@@ -1,9 +1,9 @@
 create table cust_dtl(
-cust_id varchar(10),
-cust_name varchar(30),
-prod_id varchar(10),
+cust_id varchar2(10),
+cust_name varchar2(30),
+prod_id varchar2(10),
 purchase_dt date,
-prod_price decimal(10));
+prod_price number(10));
 
 insert into cust_dtl values('1234','sarani','P6','21-FEB-2018',899)
 insert into cust_dtl values('1234','sarani','P2','21-FEB-2018',499)
