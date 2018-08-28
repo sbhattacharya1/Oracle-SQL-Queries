@@ -1,0 +1,23 @@
+create table cust_dtl(
+cust_id varchar(10),
+cust_name varchar(30),
+prod_id varchar(10),
+purchase_dt date,
+prod_price decimal(10));
+
+insert into cust_dtl values('1234','sarani','P6','21-FEB-2018',899)
+insert into cust_dtl values('1234','sarani','P2','21-FEB-2018',499)
+insert into cust_dtl values('1234','sarani','P3','20-FEB-2018',599)
+insert into cust_dtl values('1234','sarani','P4','21-FEB-2018',799)
+insert into cust_dtl values('1234','sarani','P5','20-FEB-2018',3200)
+insert into cust_dtl values('1234','sarani','P7','23-FEB-2018',200)
+select * from cust_dtl
+
+-- list out all the customers who bought at least 2 products on any of these dates
+select cust_id,cust_name,purchase_dt from cust_dtl where purchase_dt in ('20-FEB-2018','21-FEB-2018') group by cust_id ,cust_name,purchase_dt having count(1)>=2
+
+-- list out all the customer whose total buy in 2 dates are more than 3000
+select distinct cust_name,cust_id from cust_dtl where cust_id in
+(select cust_id from cust_dtl where purchase_dt between '20-FEB-2018' and '21-FEB-2018' group by cust_id having sum(prod_price)>3000)
+
+        
