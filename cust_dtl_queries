@@ -26,3 +26,7 @@ select cust_id,cust_name,sum(prod_price) from cust_dtl where purchase_dt between
 select cust_id,sum(prod_price) as total_price , case  when sum(prod_price)>=3000 then 'Y' else 'N' END as 'status' from cust_dtl
 where purchase_dt between '20-FEB-2018' and '21-FEB-2018' 
 group by cust_id
+
+-- Give 10% discount to those who has purchased more than 3000 & calculate the final amount
+select cust_id,sum(prod_price) as total_price, case when sum(prod_price)>=3000 then sum(prod_price)*0.9 else sum(prod_price) END as 'Final Price' from
+cust_dtl where purchase_dt between '20-FEB-2018' and '21-FEB-2018' group by cust_id
